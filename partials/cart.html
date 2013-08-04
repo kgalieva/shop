@@ -29,7 +29,7 @@
                         <div class="input-append">
                             <!-- use type=tel instead of  to prevent spinners -->
                             <input
-                                    class="span3 text-center error" type="text"
+                                    class="input-mini text-center error" type="text"
                                     ng-model="item.amount"
                                     ng-change="saveItems()" required/>
                             <button
@@ -44,7 +44,7 @@
                             </button>
                         </div>
                     </td>
-                    <td class="tdRight">{{item.instock - item.amount}}</td>
+                    <td class="tdRight">{{item.instock > item.amount && item.instock - item.amount || 0}}</td>
                     <td class="tdRight">{{item.price * item.amount | currency}}</td>
                     <td class="tdCenter" title="remove from cart">
                         <a href="" ng-click="addItem(item, -10000000)">
