@@ -1,0 +1,81 @@
+/* app css stylesheet */
+
+body {
+  padding-top: 20px;
+  min-width:650px;
+}
+
+.thumbnail {
+    transition: 0;
+}
+
+.opts dt{
+    float: left;
+}
+
+.square{
+    height: 120px;
+}
+
+img.product {
+    float: left;
+    border: 1px solid black;
+    margin-right: 2em;
+    margin-bottom: 1em;
+    background-color: white;
+    padding: 1em;
+    max-width: 50%;
+}
+
+ul.product-thumbs {
+  margin: 0;
+  list-style: none;
+}
+
+ul.product-thumbs li {
+  border: 1px solid black;
+  display: inline-block;
+  margin: 1em;
+  background-color: white;
+}
+
+ul.product-thumbs img {
+  height: 100px;
+  width: 100px;
+  padding: 0.5em;
+}
+
+ul.product-thumbs img:hover {
+  cursor: pointer;
+}
+
+h1 {
+  border-bottom: 1px solid gray;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.thumb img {
+    max-height: 120px;
+    max-width: 120px;
+}
+.products li{
+    display:inline;
+    float:left;
+    margin:10px;
+    width: 160px;
+    height: 160px;
+}
+.item{
+    display:block;
+    text-decoration:none;
+    background: #ffffff;
+}
+.item p{
+    margin:0;
+    font-weight:bold;
+    text-align:center;
+    color:#c3c3c3;
+}

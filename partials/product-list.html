@@ -1,0 +1,32 @@
+<div class="span7">
+    <ul class="nav nav-pills">
+        <li ng-repeat="subcategory in category.subcategories">
+            <a href="#/category/{{subcategory.id}}">{{subcategory.name}}</a>
+        </li>
+    </ul>
+    <ul class="breadcrumb">
+        <li ng-repeat="category in currentCategories()">
+            <a href="#/category/{{category.id}}">{{category.name}}</a> <span class="divider" ng-hide="$last">/</span>
+        </li>
+    </ul>
+    <div class="alert alert-info" ng-show="category.subcategories.length == 0 && category.products.length == 0">
+        Sorry, there are no products in this category.
+    </div>
+    <ul class="products">
+        <li ng-repeat="product in category.products" ng-model="category.products"
+            data-drag="true" data-jqyoui-options="{revert: 'true', helper: 'clone', scroll:false}"
+            jqyoui-draggable="{index: {{$index}}, placeholder: 'keep', onStart:'startDragging'}"
+            class="item thumbnail pagination-centered" >
+            <a href="#/product/{{product.id}}" class="thumb">
+                <div class="square"><img ng-src="{{product.thumbnailUrl}}"></div>
+                <p>{{product.name}}</p>
+                <p>{{product.price | currency}}</p>
+            </a>
+        </li>
+
+    </ul>
+</div>
+<div class="span3" ng-controller="CartCtrl">
+    <!-- Cart -->
+    <div ng-include src="cartWidget"></div>
+</div>

@@ -1,0 +1,39 @@
+<div class="fill" data-drop="true" ng-model='itemsInCartArray' jqyoui-droppable="{multiple:true, onDrop:'dropCallback'}">
+    <a href="#/cart"><h1>Shopping Cart</h1></a>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="(id, item) in itemsInCart">
+            <td><a href="#/product/{{item.id}}">{{item.name}}</a></td>
+            <td><input type="number" min="1" max="{{product.quantity}}" ng-model="item.amount" class="input-mini" required ng-change="saveItems()"/></td>
+            <td>{{item.price * item.amount | currency}}</td>
+            <td>
+                <a href="" ng-click="addItem(item, -10000000)">
+                    <i class="icon-remove"></i>
+                </a>
+            </td>
+        </tr>
+        <tr ng-show="isEmptyCart()">
+            <td colspan="3">Drop here to add to cart</td>
+        </tr>
+        </tbody>
+    </table>
+    <p class="total">Total: {{getTotalPrice() | currency}}</p>
+
+    <div>
+        <a href="#/cart" class="btn" type="button btn-success"><i class="icon-chevron-left"></i> Checkout</a>
+        <button
+                class="btn btn-danger"
+                ng-click="clearItems()"
+                ng-disabled="isEmptyCart()">
+            <i class="icon-trash icon-white"></i> clear cart
+        </button>
+    </div>
+</div>

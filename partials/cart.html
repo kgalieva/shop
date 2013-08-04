@@ -1,0 +1,81 @@
+﻿<div class="span9">
+    <div ng-controller="CartCtrl">
+        <h1>Shopping Cart</h1>
+
+        <div>
+            <!-- items -->
+            <table class="table table-bordered">
+
+                <!-- header -->
+                <tr class="well">
+                    <td><b>Item</b></td>
+                    <td class="tdCenter"><b>Quantity</b></td>
+                    <td class="tdCenter"><b>In stock</b></td>
+                    <td class="tdRight"><b>Price</b></td>
+                    <td></td>
+                </tr>
+
+                <!-- empty cart message -->
+                <tr ng-show="isEmptyCart()">
+                    <td class="tdCenter" colspan="4">
+                        Your cart is empty.
+                    </td>
+                </tr>
+
+                <!-- cart items -->
+                <tr ng-repeat="item in itemsInCart">
+                    <td><a href="#/product/{{item.id}}">{{item.name}}</a></td>
+                    <td class="tdCenter">
+                        <div class="input-append">
+                            <!-- use type=tel instead of  to prevent spinners -->
+                            <input
+                                    class="span3 text-center error" type="text"
+                                    ng-model="item.amount"
+                                    ng-change="saveItems()" required/>
+                            <button
+                                    class="btn btn-success" type="button"
+                                    ng-disabled="item.amount >= item.instock"
+                                    ng-click="addItem(item, 1)">+
+                            </button>
+                            <button
+                                    class="btn btn-inverse" type="button"
+                                    ng-disabled="item.amount <= 1"
+                                    ng-click="addItem(item, -1)">-
+                            </button>
+                        </div>
+                    </td>
+                    <td class="tdRight">{{item.instock - item.amount}}</td>
+                    <td class="tdRight">{{item.price * item.amount | currency}}</td>
+                    <td class="tdCenter" title="remove from cart">
+                        <a href="" ng-click="addItem(item, -10000000)">
+                            <i class="icon-remove"></i>
+                        </a>
+                    </td>
+                </tr>
+
+                <!-- footer -->
+                <tr class="well">
+                    <td><b>Total</b></td>
+                    <td class="tdCenter"></td>
+                    <td></td>
+                    <td class="tdRight"><b>{{getTotalPrice() | currency}}</b></td>
+                    <td></td>
+
+                </tr>
+            </table>
+        </div>
+
+        <!-- buttons -->
+        <div>
+            <a href="#/category" class="btn" type="button btn-success"><i class="icon-chevron-left"></i>back to
+                store</a>
+            <button
+                    class="btn btn-danger"
+                    ng-click="clearItems()"
+                    ng-disabled="isEmptyCart()">
+                <i class="icon-trash icon-white"></i> clear cart
+            </button>
+        </div>
+    </div>
+</div>
+

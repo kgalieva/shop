@@ -1,0 +1,50 @@
+<div class="span7">
+    <div ng-controller="CartCtrl">
+        <ul class="breadcrumb">
+            <li ng-repeat="category in product.categories">
+                <a href="#/category/{{category.id}}">{{category.name}}</a> <span class="divider" ng-hide="$last">/</span>
+            </li>
+        </ul>
+        <div>
+            <img ng-src="{{mainImageUrl}}" class="product"/>
+        </div>
+        <div>
+        <h2>{{product.name}}</h2>
+
+        <h3 class="text-error">Price: {{product.price | currency}}</h3>
+        <dl class="opts" ng-hide="!product.scu">
+            <dt>SCU:</dt>
+            <dd>{{product.scu}}</dd>
+        </dl>
+        <dl class="opts" ng-hide="!product.quantity">
+            <dt>In stock:</dt>
+            <dd>{{product.quantity}}</dd>
+        </dl>
+            <form name="addForm">
+                <dl class="opts">
+                    <dt>Quantity:</dt>
+                    <dd class="controls">
+                        <input type="number" name="amount" max="{{product.quantity}}" ng-model="amount" min="1" value="1" class="input-mini" required/>
+                    </dd>
+                </dl>
+
+                <button class="btn btn-success" type="button"
+                        ng-click="addItem(product, amount)"><i class="icon-plus icon-white"></i> Add to cart
+                </button>
+            </form>
+        </div>
+    </div>
+    <div style="clear:both;"></div>
+    <div>
+        <ul class="product-thumbs">
+            <li ng-repeat="img in product.galleryImages">
+                <img ng-src="{{img.url}}" ng-click="setImage(img.url)"/>
+            </li>
+        </ul>
+    </div>
+    <div ng-bind-html-unsafe="product.description"></div>
+</div>
+<div class="span3" ng-controller="CartCtrl">
+    <!-- Cart -->
+    <div ng-include src="cartWidget"></div>
+</div>

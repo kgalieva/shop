@@ -1,0 +1,9 @@
+<h2>Choose a category</h2>
+<ul class="products">
+    <li data-ng-repeat="category in mainMenu" class="item thumbnail pagination-centered" >
+        <a href="#/category/{{category.id}}" class="thumb">
+            <div class="square"><img ng-src="{{category.thumbnailUrl}}"></div>
+            <p>{{category.name }}</p>
+        </a>
+    </li>
+</ul>
